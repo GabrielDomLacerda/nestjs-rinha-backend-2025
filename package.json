@@ -1,17 +1,18 @@
 {
-    "name": "nestjs-rinha-backend-2025",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "packageManager": "pnpm@10.13.1",
-    "private": true,
-    "devDependencies": {
-        "@nestjs/cli": "^11.0.7"
-    }
+  "name": "nestjs-rinha-backend-2025",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "private": true,
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.7",
+    "prettier": "^3.6.2"
+  }
 }

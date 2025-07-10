@@ -3,5 +3,5 @@ packages:
   - libs/*
 
 onlyBuiltDependencies:
-  - '@nestjs/core'
-  - '@swc/core'
+  - "@nestjs/core"
+  - "@swc/core"
