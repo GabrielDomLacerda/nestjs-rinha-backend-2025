@@ -1,0 +1,7 @@
+.git
+node_modules
+.pnpm
+apps/*/node_modules
+dist
+Dockerfile
+*.swp

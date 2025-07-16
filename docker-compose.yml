@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  rabbit:
+    image: rabbitmq:4-management
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASS}
+    ports:
+      - "${RABBIT_PORT}:${RABBIT_PORT}"
+      - "15672:15672"
+    networks: [backend]
+
+  api:
+      build:
+        context: .
+        dockerfile: apps/api/Dockerfile
+      env_file: .env
+      environment:
+        PORT: ${API_PORT}
+        RABBIT_URL: ${RABBIT_URL}
+      depends_on: [rabbit]
+      ports:
+        - "${API_PORT}:3000"
+      networks: [backend]
+
+  worker:
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+    env_file: .env
+    environment:
+      RABBIT_URL: ${RABBIT_URL}
+    depends_on: [rabbit]
+    networks: [backend]
+
+  health-checker:
+    build:
+      context: .
+      dockerfile: apps/health-checker/Dockerfile
+    env_file: .env
+
+networks:
+  backend:  
+    driver: bridge
