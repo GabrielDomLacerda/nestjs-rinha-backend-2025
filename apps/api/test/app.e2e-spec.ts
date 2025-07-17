@@ -1,8 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
+import { CreatePaymentDto } from '@dtos/create-payment.dto';
+import { randomUUID } from 'crypto';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
@@ -16,10 +18,23 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
+  it('/payment (POST) → 200 + payload', async () => {
+    const payload: CreatePaymentDto = {
+      correlationId: randomUUID(),
+      amount: 10,
+    };
+
+    await request(app.getHttpServer())
+      .post('/payment')
+      .send(payload)
       .expect(200)
-      .expect('Hello World!');
+      .expect(({ body }) => {
+        expect(body).toEqual(
+          expect.objectContaining({
+            message: 'Payment created successfully',
+            payment: expect.objectContaining(payload) as unknown,
+          }),
+        );
+      });
   });
 });

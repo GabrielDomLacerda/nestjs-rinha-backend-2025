@@ -7,7 +7,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
-import { CreatePaymentDto } from './dtos/create-payment.dto';
+import { CreatePaymentDto } from '@dtos/create-payment.dto';
 
 @Controller()
 export class PaymentsController {

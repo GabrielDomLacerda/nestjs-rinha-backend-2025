@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "paths": {
+            "@dtos/*": ["libs/dtos/*"],
+            "@db/*": ["libs/db/*"]
+        }
+    },
+    "include": ["libs/**/*.ts", "apps/**/*.ts"]
+}
